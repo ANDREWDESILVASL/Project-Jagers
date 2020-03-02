@@ -1,0 +1,27 @@
+import com.sun.applet2.AppletParameters;
+
+import java.util.HashMap;
+
+public class Overactinng {
+    private HashMap <String,Integer> puck = new HashMap<String, Integer>();
+
+    public static void main(String[] args) {
+        Overactinng ins = new Overactinng();
+        ins.ummahkate();
+        ins.pote();
+
+    }
+
+    private void  ummahkate() {
+        puck.put("adeeeeee",20);
+        puck.put("bariyoooo",25);
+        System.out.println(puck);
+    }
+
+    private  void pote(){
+        puck.remove("bariyoooo");
+        System.out.println(puck);
+    }
+
+
+}
