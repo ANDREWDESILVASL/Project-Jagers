@@ -1,0 +1,38 @@
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+public class test extends Application {
+    private void scene(){           //THIS IS where you create the gui window
+        
+        //replace border pane with your pane
+        BorderPane borderPane = new BorderPane();
+        Scene scene = new Scene(borderPane, 600, 450);
+
+        //replace customStageName with your stage name
+        Stage customStageName = new Stage();
+
+
+        customStageName.setTitle("Train Booking Menu");
+        customStageName.setScene(scene);
+        customStageName.showAndWait();
+
+    }
+    
+    
+    public static void main(String[] args) { //note-only launch args
+        launch();
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {                        //this block contains all your logic,loops
+                //to call the gui window which is created in private void scene()
+                scene();
+    }
+}
+
+
+//please do not share this.
+//great power comes great responsibility.
+//ANDREWDESILVASL@jagers
