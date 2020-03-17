@@ -1,0 +1,73 @@
+import java.util.List;
+import com.mongodb.*;
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+public class Database extends Application
+{
+    private static MongoClient mongoClient = new MongoClient("localhost", 27017);//connecting to mongoDB
+    private DB database = mongoClient.getDB("TestDatabase");//connecting to the database
+    private DBCollection data = database.getCollection("TestingCol");//connecting to the collection
+
+    public static void main (String[] args)
+    {
+        launch();
+    }
+
+    @Override
+    public void start(Stage primaryStage)
+    {
+        System.out.println("Store Part");
+        store();
+
+        System.out.println("Load Part");
+        load();
+    }
+
+    private void store()
+    {
+        //1 row in data collection
+        BasicDBObject document = new BasicDBObject();//object creating
+        document.put("firstName", "name1"); //inserting the values to the object
+        document.put("seat", "1,2");
+        data.insert(document);//sending the object data into database
+
+        //2 row in data collection
+        BasicDBObject document1 = new BasicDBObject();
+        document1.put("firstName", "name2");
+        document1.put("seat", "1,2");
+        data.insert(document1);
+    }
+
+    private void load()
+    {
+        DBCursor cursor = data.find();//taking the database data into object
+        List<DBObject> tempArray = cursor.toArray();//converting object to a list
+
+        System.out.println("First Col");//taking the first col(firstName) data
+        for(DBObject listObj : tempArray){
+            System.out.println(listObj.get("firstName").toString());
+        }
+
+        System.out.println("Second Col");//taking the second col(seat) data
+        for(DBObject listObj : tempArray){
+            System.out.println(listObj.get("seat").toString());
+        }
+    }
+}
+
+//first you have to install Mongo db into your PC
+//https://www.youtube.com/watch?v=sluiQOXKUmQ&t=2s
+
+//then download java driver(jar file) into the pc.No need to install
+//https://jar-download.com/artifacts/org.mongodb/mongo-java-driver/3.4.3/source-code
+
+//then copy the jar file into your project as a library:
+//right click the project name in left slide bar.then click directory then create a directory
+//and paste the downloaded jar file there.
+//the right click on the pasted jar file and select add as a library.
+
+//happy coding <)
+
+//Only share with closed friends.
+
